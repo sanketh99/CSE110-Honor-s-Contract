@@ -2,15 +2,15 @@
  * Created by sanke on 10/25/2016.
  */
 public class Coordinate {
-    int x;
-    int y;
+    int row;
+    int col;
 
-    public Coordinate(int x, int y) {
-        this.x = x;
-        this.y = y;
+    public Coordinate(int row, int col) {
+        this.row = row;
+        this.col = col;
     }
 
-    public boolean equals(int x, int y) {
-        return this.x == x && this.y == y;
+    public boolean equals(int row, int y) {
+        return this.row == row && this.col == y;
     }
 }

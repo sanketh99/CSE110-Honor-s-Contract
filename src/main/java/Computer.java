@@ -6,6 +6,7 @@ import java.util.Random;
  */
 public class Computer extends Player {
     private Random rn = new Random();
+    Coordinate currentGuess;
     private int x;
     private int y;
 
@@ -28,6 +29,7 @@ public class Computer extends Player {
         }
 
         System.out.println("Let's try " + x + ", " + y);
+        currentGuess = new Coordinate(x, y);
         return opponent.checkGuess(x, y);
     }
 }

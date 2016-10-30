@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class PlayBattleShip {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        Board board = new Board();
+        BattleShipBoard board = new BattleShipBoard(3);
         Computer comp;
         Player user;
         boolean yourTurn = true;
@@ -18,13 +18,12 @@ public class PlayBattleShip {
         board.setUp();
         user = board.getPlayer();
         comp = board.getComp();
-        board.displayBoard();
 
         while (user.getUnsunkShips().size() < board.getNum_pieces()) {
             System.out.println("Enter coordinates of ship: ");
-            System.out.println("x: ");
+            System.out.println("row: ");
             x = sc.nextInt();
-            System.out.println("y: ");
+            System.out.println("col: ");
             y = sc.nextInt();
             user.addShip(x, y);
         }
@@ -33,17 +32,17 @@ public class PlayBattleShip {
             if (yourTurn) {
                 System.out.println("It's your turn!");
                 System.out.println("Please enter a guess: ");
-                System.out.println("x: ");
+                System.out.println("row: ");
                 x = sc.nextInt();
-                System.out.println("y: ");
+                System.out.println("col: ");
                 y = sc.nextInt();
-                if (!user.validateGuess(x, y)) {
+                while (!user.validateGuess(x, y)) {
                     System.out.println("");
                     System.out.println("You've already entered that coordinate or your coordinate is out of bounds!");
                     System.out.println("Please try again.");
-                    System.out.println("x: ");
+                    System.out.println("row: ");
                     x = sc.nextInt();
-                    System.out.println("y: ");
+                    System.out.println("col: ");
                     y = sc.nextInt();
                 }
                 boolean result = user.makeGuess(comp, x, y);

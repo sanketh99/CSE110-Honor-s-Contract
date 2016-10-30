@@ -8,7 +8,8 @@ public class Player {
     private ArrayList<Coordinate> sunkShips = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> hits = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> misses = new ArrayList<Coordinate>();
-    private static Board board;
+    private static BattleShipBoard board;
+    boolean setShips = false;
 
     public ArrayList<Coordinate> getUnsunkShips() {
         return unsunkShips;
@@ -22,11 +23,11 @@ public class Player {
         }
     }
 
-    public void setBoard(Board board) {
+    public void setBoard(BattleShipBoard board) {
         this.board = board;
     }
 
-    public Board getBoard() {
+    public BattleShipBoard getBoard() {
         return board;
     }
 
