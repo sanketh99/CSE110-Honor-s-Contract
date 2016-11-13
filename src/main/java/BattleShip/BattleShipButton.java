@@ -1,3 +1,5 @@
+package BattleShip;
+
 import javax.swing.*;
 
 /**

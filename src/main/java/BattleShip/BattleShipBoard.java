@@ -1,3 +1,5 @@
+package BattleShip;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -34,7 +36,7 @@ public class BattleShipBoard extends JFrame {
 
     public static void main(String[] args) {
 
-        new BattleShipBoard(3);
+        new BattleShipBoard(4);
     }
 
     public BattleShipButton getPlayerButton(int row, int col) {
@@ -46,8 +48,8 @@ public class BattleShipBoard extends JFrame {
 
 
         // haven't set up player or anything else yet :(
-        setMax_size(3);
-        setNum_pieces(3);
+        setMax_size(max_size);
+        setNum_pieces(5);
         setUp();
         // move all this later :(
 

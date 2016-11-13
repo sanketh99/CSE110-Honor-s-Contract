@@ -1,3 +1,5 @@
+package BattleShip;
+
 /**
  * Created by sanke on 10/25/2016.
  */
