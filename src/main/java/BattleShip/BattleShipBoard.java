@@ -29,10 +29,6 @@ public class BattleShipBoard extends JFrame {
     public void setNum_pieces(int num_pieces) {
         this.num_pieces = num_pieces;
     }
-    public Computer getComp() {
-        return comp;
-    }
-    public Player getPlayer() { return player; }
 
     public static void main(String[] args) {
 
@@ -55,7 +51,7 @@ public class BattleShipBoard extends JFrame {
 
         setSize(400, 400);
         setResizable(false);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JPanel myPanel = createOverallPanel();
         add(myPanel);
         setVisible(true);
@@ -83,13 +79,10 @@ public class BattleShipBoard extends JFrame {
             BattleShipButton newButton = new BattleShipButton();
 
             newButton.setButtonLocation(new Coordinate(i/max_size, i % max_size));
-            newButton.setBoard(this);
 
             if (user.equals("C")) {
-                newButton.setYourBoard(false);
                 newButton.addActionListener(computerButtonListener);
             } else {
-                newButton.setYourBoard(true);
                 newButton.addActionListener(playerButtonListener);
             }
 
@@ -164,6 +157,18 @@ public class BattleShipBoard extends JFrame {
                 compGuess.setOpaque(true);
                 compGuess.setBorderPainted(false);
             }
+        }
+    }
+
+    class BattleShipButton extends JButton {
+        private Coordinate buttonLocation;
+
+        public void setButtonLocation(Coordinate buttonLocation) {
+            this.buttonLocation = buttonLocation;
+        }
+
+        public Coordinate getButtonLocation() {
+            return this.buttonLocation;
         }
     }
 
