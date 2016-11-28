@@ -151,37 +151,39 @@ public class BattleShipBoard extends JFrame {
                     int row = currentLocation.row;
                     int col = currentLocation.col;
 
-                    // Player makes a guess at these coordinates.
-                    boolean result = player.makeGuess(comp, row, col);
+                    if (player.isGuessUnique(row, col)) {
+                        // Player makes a guess at these coordinates.
+                        boolean result = player.makeGuess(comp, row, col);
 
-                    // Changes color of the button depending on whether or not the Player's attack was a hit or miss.
-                    if (result) {
-                        clickedButton.setBackground(Color.red);
-                    } else {
-                        clickedButton.setBackground(Color.black);
+                        // Changes color of the button depending on whether or not the Player's attack was a hit or miss.
+                        if (result) {
+                            clickedButton.setBackground(Color.red);
+                        } else {
+                            clickedButton.setBackground(Color.black);
+                        }
+                        clickedButton.setOpaque(true);
+                        clickedButton.setBorderPainted(false);
+
+                        // Computer makes a guess.
+                        result = comp.makeGuess(player);
+                        Coordinate sunkShip = comp.getCurrentGuess();
+                        BattleShipButton compGuess = getPlayerButton(sunkShip.row, sunkShip.col);
+
+                        if (result) {
+                            compGuess.setBackground(Color.red);
+                        } else {
+                            compGuess.setBackground(Color.black);
+                        }
+                        compGuess.setOpaque(true);
+                        compGuess.setBorderPainted(false);
                     }
-                    clickedButton.setOpaque(true);
-                    clickedButton.setBorderPainted(false);
 
-                    // Computer makes a guess.
-                    result = comp.makeGuess(player);
-                    Coordinate sunkShip = comp.getCurrentGuess();
-                    BattleShipButton compGuess = getPlayerButton(sunkShip.row, sunkShip.col);
-
-                    if (result) {
-                        compGuess.setBackground(Color.red);
-                    } else {
-                        compGuess.setBackground(Color.black);
-                    }
-                    compGuess.setOpaque(true);
-                    compGuess.setBorderPainted(false);
                 } else {
-
                     // Prints who won the game!
                     if (player.getSunkShips().size() == getNum_pieces()) {
                         System.out.println("Computer won!");
                     } else if (comp.getSunkShips().size() == getNum_pieces()) {
-                        System.out.println("Player won!");
+                        System.out.println("You won!");
                     }
                 }
             }
