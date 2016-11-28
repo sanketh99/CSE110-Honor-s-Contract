@@ -8,12 +8,17 @@ import java.util.Random;
  */
 public class Computer extends Player {
     private Random rn = new Random();
-    Coordinate currentGuess;
+    private Coordinate currentGuess;
     private ArrayList<Coordinate> allGuesses = new ArrayList<>();
     private int x;
     private int y;
 
-    public Computer() {
+    public Coordinate getCurrentGuess() {
+        return currentGuess;
+    }
+
+    // Initializes the locations of the ships the computer sets.
+    public void initialize() {
         while (this.getUnsunkShips().size() < this.getBoard().getNum_pieces()) {
             x = rn.nextInt(this.getBoard().getMax_size());
             y = rn.nextInt(this.getBoard().getMax_size());
@@ -21,6 +26,8 @@ public class Computer extends Player {
         }
     }
 
+    // Slightly different than the method within the Player class. This code makes sure that the computer
+    // isn't using the same guesses.
     public boolean makeGuess(Player opponent) {
         x = rn.nextInt(this.getBoard().getMax_size());
         y = rn.nextInt(this.getBoard().getMax_size());

@@ -13,10 +13,20 @@ public class Player {
     private static BattleShipBoard board;
     boolean setShips = false;
 
+    public void setBoard(BattleShipBoard board) {
+        this.board = board;
+    }
     public ArrayList<Coordinate> getUnsunkShips() {
         return unsunkShips;
     }
+    public BattleShipBoard getBoard() {
+        return board;
+    }
+    public ArrayList<Coordinate> getSunkShips() {
+        return sunkShips;
+    }
 
+    // Adds Player's ships to the board. Ensures that player doesn't add a ship on a spot where there is already a ship.
     public void addShip(int x, int y) {
         if (!(getMatch(x, y, unsunkShips))) {
             this.unsunkShips.add(new Coordinate(x, y));
@@ -25,26 +35,7 @@ public class Player {
         }
     }
 
-    public void setBoard(BattleShipBoard board) {
-        this.board = board;
-    }
-
-    public BattleShipBoard getBoard() {
-        return board;
-    }
-
-    public ArrayList<Coordinate> getSunkShips() {
-        return sunkShips;
-    }
-
-
-    public ArrayList<Coordinate> getAllShots() {
-        ArrayList<Coordinate> shots = new ArrayList<Coordinate>();
-        shots.addAll(hits);
-        shots.addAll(misses);
-        return shots;
-    }
-
+    // This function is for the opposing player (or computer) to use. It checks to see whether the opponent's guess was a hit or miss.
     public boolean checkGuess(int x, int y) {
         for (Coordinate marker : unsunkShips) {
             if (marker.equals(x, y)) {
@@ -56,6 +47,7 @@ public class Player {
         return false;
     }
 
+    // This function determines whether the Player's guess (strike on the computer) is a hit or a miss.
     public boolean makeGuess(Player opponent, int x, int y) {
         boolean result = opponent.checkGuess(x, y);
         if (result) {
@@ -66,16 +58,8 @@ public class Player {
         return result;
     }
 
-    public boolean validateGuess(int x, int y) {
-        boolean bounds = false;
-        if (0 < x && x <= this.getBoard().getMax_size()) {
-            if (0 < y && y <= this.getBoard().getMax_size()) {
-                bounds = true;
-            }
-        }
-        return (!getMatch(x, y, getAllShots()) && bounds);
-    }
 
+    // Searches to see if a set of coordinates exist within an array.
     public boolean getMatch(int x, int y, ArrayList<Coordinate> searchArray) {
         for (Coordinate marker : searchArray) {
             if (marker.equals(x, y)) {
